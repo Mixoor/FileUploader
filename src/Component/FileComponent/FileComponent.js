@@ -20,6 +20,10 @@ export default class FileComponent extends Component{
         this.dropRef = React.createRef();
     }
 
+
+
+
+
     handleDrag = (e) => {
         e.preventDefault()
         e.stopPropagation()
@@ -169,12 +173,16 @@ export default class FileComponent extends Component{
 
 }
 
-FileComponent.PropTypes={
+FileComponent.propTypes={
     inputClass : PropTypes.string,
     files: PropTypes.array.isRequired,
     multiple:PropTypes.bool,
     onFileChange:PropTypes.func.isRequired
 };
+
+FileComponent.defaultProps={
+    files:[]
+}
 
 FileComponent.defaultProps={
     inputClass:"loader-input",

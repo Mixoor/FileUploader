@@ -6,7 +6,8 @@ class App extends Component {
       constructor(props){
         super(props);
         this.state={
-          files:[]
+          files:[],
+          multiple:true
         };
 
         this.onChangeFile= this.onChangeFile.bind(this);
@@ -14,9 +15,14 @@ class App extends Component {
         onChangeFile(e,f){
           e.preventDefault();
           let ffs = f || e.target.files;
-          this.setState({files:ffs});
+          if(this.state.multiple)
+            this.setState(prev=>{return {files:[...prev.files,...ffs]}});
+          else
+            this.setState({files:ffs});
         }
 
+
+     
    
    
 
@@ -26,7 +32,7 @@ class App extends Component {
           return (
             <div className="App">
               <FileComponent options={{accept:"image/png"}} files={this.state.files} 
-             multiple={true} 
+             multiple={this.state.multiple} 
               onFileChange={this.onChangeFile}/>
             </div>
           );
